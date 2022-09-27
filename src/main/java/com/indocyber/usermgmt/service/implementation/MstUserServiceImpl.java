@@ -24,4 +24,13 @@ public class MstUserServiceImpl implements MstUserService {
         }
         return mstUser;
     }
+
+    @Override
+    public void getDeleteUser(String id) {
+        Optional<MstUser> theMstUser = mstUserRepository.findById(id);
+        MstUser mstUser = theMstUser.get();
+
+        mstUser.setFlagActive(false);
+        mstUserRepository.save(mstUser);
+    }
 }

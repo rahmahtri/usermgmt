@@ -29,4 +29,17 @@ public class MstController {
             return new ResponseEntity<>(theUser,HttpStatus.OK);
         }
     }
+
+    @PutMapping("/delete/{id}")
+    private ResponseEntity<Object> deleteUser (@PathVariable String id){
+
+        if(mstUserService.getUserId(id)==null){
+            String message = String.format("Data user dengan ID : %s tidak ditemukan",id);
+            return new  ResponseEntity<>(message,HttpStatus.NOT_FOUND);
+        } else {
+            mstUserService.getDeleteUser(id);
+            String message = String.format("Data user dengan ID : %s berhasil di delete",id);
+            return new ResponseEntity<>(message,HttpStatus.OK);
+        }
+    }
 }

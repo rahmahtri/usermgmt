@@ -5,4 +5,6 @@ import com.indocyber.usermgmt.entity.MstUser;
 
 public interface MstUserService {
     MstUser getUserId(String id);
+
+    void getDeleteUser(String id);
 }
