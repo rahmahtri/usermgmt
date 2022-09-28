@@ -27,7 +27,7 @@ public class MstUserServiceImpl implements MstUserService {
         id = String.format(Locale.getDefault(), "%03d", sumId);
 
         var addUser = new MstUser(
-                id.toString(),
+                id,
                 dto.getUserFullname(),
                 dto.getFlagActive(),
                 dto.getEmail(),
