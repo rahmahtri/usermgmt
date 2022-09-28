@@ -1,7 +1,9 @@
 package com.indocyber.usermgmt.service.implementation;
 
 import com.indocyber.usermgmt.dao.MstUserRepository;
+import com.indocyber.usermgmt.dto.MstUserDTO;
 import com.indocyber.usermgmt.dto.UpsertMstUserDTO;
+
 import com.indocyber.usermgmt.entity.MstUser;
 import com.indocyber.usermgmt.service.abstraction.MstUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +16,7 @@ public class MstUserServiceImpl implements MstUserService {
 
     @Autowired
     private MstUserRepository mstUserRepository;
-
-    @Override
+   
     public String saveMstUser(UpsertMstUserDTO dto) {
         MstUser entity = new MstUser(
                 dto.getId(),
@@ -30,6 +31,26 @@ public class MstUserServiceImpl implements MstUserService {
                 );
         MstUser respond = mstUserRepository.save(entity);
         return respond.getId();
+
     }
+    
+     @Override
+    public MstUser getUserId(String id) {
+        Optional<MstUser> theMstUser = mstUserRepository.findById(id);
+        MstUser mstUser = null;
+        if (theMstUser.isPresent()){
+            mstUser = theMstUser.get();
+        }
+        return mstUser;
+    }
+
+    @Override
+    public void getDeleteUser(String id) {
+        Optional<MstUser> theMstUser = mstUserRepository.findById(id);
+        MstUser mstUser = theMstUser.get();
+
+        mstUser.setFlagActive(false);
+        mstUserRepository.save(mstUser);
+     }
 }
 
