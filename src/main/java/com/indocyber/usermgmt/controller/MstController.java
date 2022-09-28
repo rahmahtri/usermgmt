@@ -1,5 +1,22 @@
 package com.indocyber.usermgmt.controller;
 
+import com.indocyber.usermgmt.dto.MstUserDTO;
+import com.indocyber.usermgmt.dto.UpsertMstUserDTO;
+import com.indocyber.usermgmt.entity.MstUser;
+import com.indocyber.usermgmt.service.abstraction.MstUserService;
+import com.indocyber.usermgmt.service.implementation.MstUserServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+
+@CrossOrigin
+@Controller
+@RequestMapping("/usermgmt/v1/user")
 public class MstController {
 
     @Autowired
