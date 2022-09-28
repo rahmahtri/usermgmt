@@ -76,21 +76,19 @@ public class MstController {
             }
       }
 
-    @Autowired
-    private MstUserService service;
-
     @GetMapping(value = "/list")
     public ResponseEntity<Object> get(
             @RequestParam(defaultValue = "") String id,
-            @RequestParam(defaultValue = "") String name,
+            @RequestParam(defaultValue = "") String userFullname,
             @RequestParam(defaultValue = "") String email,
             @RequestParam(defaultValue = "1") Integer page
     ){
         try {
-            var pageObject = service.getGrid(id,name,email,page);
+            var pageObject = service.getGrid(id,userFullname,email,page);
             return ResponseEntity.status(HttpStatus.OK).body(pageObject);
         } catch (Exception exception){
             return ResponseEntity.status(500).body(exception.getMessage());
         }
     }
+
 }

@@ -6,6 +6,9 @@ import com.indocyber.usermgmt.dto.UpsertMstUserDTO;
 import com.indocyber.usermgmt.entity.MstUser;
 import com.indocyber.usermgmt.service.abstraction.MstUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Locale;
@@ -61,7 +64,7 @@ public class MstUserServiceImpl implements MstUserService {
     public MstUser getUserId(String id) {
         Optional<MstUser> theMstUser = mstUserRepository.findById(id);
         MstUser mstUser = null;
-        if (theMstUser.isPresent()){
+        if (theMstUser.isPresent()) {
             mstUser = theMstUser.get();
         }
         return mstUser;
@@ -75,21 +78,6 @@ public class MstUserServiceImpl implements MstUserService {
         mstUser.setFlagActive(false);
         mstUserRepository.save(mstUser);
     }
-import com.indocyber.usermgmt.dao.MstUserRepository;
-import com.indocyber.usermgmt.dto.MstUserDTO;
-import com.indocyber.usermgmt.entity.MstUser;
-import com.indocyber.usermgmt.service.abstraction.MstUserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Service;
-
-@Service
-public class MstUserServiceImpl implements MstUserService {
-
-    @Autowired
-    private MstUserRepository mstUserRepository;
 
     private final Integer rowInPage = 10;
 
@@ -107,4 +95,5 @@ public class MstUserServiceImpl implements MstUserService {
                 pagination);
         return pageObject;
     }
+
 }
