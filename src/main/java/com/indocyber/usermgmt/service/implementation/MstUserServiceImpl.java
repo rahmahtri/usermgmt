@@ -2,6 +2,8 @@ package com.indocyber.usermgmt.service.implementation;
 
 import com.indocyber.usermgmt.dao.MstUserRepository;
 import com.indocyber.usermgmt.dto.MstUserDTO;
+import com.indocyber.usermgmt.dto.UpsertMstUserDTO;
+
 import com.indocyber.usermgmt.entity.MstUser;
 import com.indocyber.usermgmt.service.abstraction.MstUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +16,25 @@ public class MstUserServiceImpl implements MstUserService {
 
     @Autowired
     private MstUserRepository mstUserRepository;
+   
+    public String saveMstUser(UpsertMstUserDTO dto) {
+        MstUser entity = new MstUser(
+                dto.getId(),
+                dto.getUserFullname(),
+                dto.getFlagActive(),
+                dto.getEmail(),
+                dto.getPasswd(),
+                dto.getCreatedDate(),
+                dto.getCreatedBy(),
+                dto.getUpdatedDate(),
+                dto.getUpdatedBy()
+                );
+        MstUser respond = mstUserRepository.save(entity);
+        return respond.getId();
 
-    @Override
+    }
+    
+     @Override
     public MstUser getUserId(String id) {
         Optional<MstUser> theMstUser = mstUserRepository.findById(id);
         MstUser mstUser = null;
@@ -32,5 +51,6 @@ public class MstUserServiceImpl implements MstUserService {
 
         mstUser.setFlagActive(false);
         mstUserRepository.save(mstUser);
-    }
+     }
 }
+
