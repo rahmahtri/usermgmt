@@ -16,7 +16,7 @@ import java.util.Date;
 public class UpsertMstUserDTO {
     private String id;
     private String userFullname;
-    private Boolean flagActive = false;
+    private Boolean flagActive = true;
     private String email;
     private String passwd;
     private LocalDateTime createdDate;

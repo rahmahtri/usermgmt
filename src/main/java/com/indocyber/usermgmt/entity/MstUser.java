@@ -28,7 +28,7 @@ public class MstUser {
     private String userFullname;
 
     @Column(name = "flag_active", nullable = false)
-    private Boolean flagActive = false;
+    private Boolean flagActive = true;
 
     @Column(name = "email", length = 200)
     private String email;

@@ -22,7 +22,7 @@ public class MstUserServiceImpl implements MstUserService {
     public MstUser addUser(MstUserDTO dto) {
         String id = dto.getId();
         var lastId = mstUserRepository.descId();
-        Long formatId = Long.parseLong(lastId);
+        var formatId = Long.parseLong(lastId);
         var sumId = formatId + 1;
         id = String.format(Locale.getDefault(), "%03d", sumId);
 

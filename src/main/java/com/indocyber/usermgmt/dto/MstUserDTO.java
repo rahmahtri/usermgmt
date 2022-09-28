@@ -18,7 +18,7 @@ import java.util.Date;
 public class MstUserDTO {
     private String id;
     private String userFullname;
-    private Boolean flagActive = false;
+    private Boolean flagActive = true;
     private String email;
     private String passwd;
     private LocalDateTime createdDate = LocalDateTime.now();
