@@ -20,21 +20,18 @@ import javax.validation.Valid;
 public class MstController {
 
     @Autowired
-    MstUserServiceImpl service;
+    private MstUserService mstUserService;
 
     @PostMapping("/add")
     public ResponseEntity<Object> addUser(@RequestBody MstUserDTO dto){
         try{
-            var response = service.addUser(dto);
+            var response = mstUserService.addUser(dto);
             return ResponseEntity.status(200).body(response);
         }catch (Exception exception) {
             return ResponseEntity.status(500).body(exception.getMessage());
         }
 
     }
-
-    @Autowired
-    private MstUserService mstUserService;
 
     @PutMapping("/update")
     public ResponseEntity<Object> update(@Valid @RequestBody UpsertMstUserDTO dto, BindingResult bindingResult){
@@ -84,7 +81,7 @@ public class MstController {
             @RequestParam(defaultValue = "1") Integer page
     ){
         try {
-            var pageObject = service.getGrid(id,userFullname,email,page);
+            var pageObject = mstUserService.getGrid(id,userFullname,email,page);
             return ResponseEntity.status(HttpStatus.OK).body(pageObject);
         } catch (Exception exception){
             return ResponseEntity.status(500).body(exception.getMessage());
