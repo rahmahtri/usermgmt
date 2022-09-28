@@ -20,7 +20,7 @@ public class MstUserServiceImpl implements MstUserService {
 
     @Override
     public MstUser addUser(MstUserDTO dto) {
-        String id = dto.getId();
+        var id = dto.getId();
         var lastId = mstUserRepository.descId();
         var formatId = Long.parseLong(lastId);
         var sumId = formatId + 1;
